@@ -16,8 +16,8 @@ This pipeline is built using a modern microservice architecture, separating the 
 #### 1. On-the-Fly Runtime Indexing
 Instead of relying on static, pre-calculated embeddings, the backend dynamically builds its own database upon boot. It ingests hundreds of physical dataset images, passes them through the neural network to extract high-dimensional mathematical vectors, and indexes them directly into RAM using Cosine Similarity calculations.
 
-#### 2. "The Bouncer AI" (Out-of-Distribution Detection)
-To prevent the mathematical anomalies that occur when feeding untrained objects (like shoes or cars) into a domain-specific model, this engine features a multi-model ensemble approach. A lightweight, pre-trained **ResNet18** model sits at the API endpoint as a "Bouncer." It classifies the user's sketch first; if it does not detect a chair-related object, it safely rejects the input before it ever reaches the heavy retrieval network.
+#### 2. Out-of-Distribution (OOD) Detection
+To prevent the mathematical anomalies that occur when feeding untrained objects (like shoes or cars) into a domain-specific model, this engine features a strict mathematical validation layer. By calculating the Cosine Similarity distance of the input vector against the dataset, the API relies on a confidence threshold to safely reject non-domain inputs before returning invalid product matches.
 
 #### 3. Custom Phase-2 Retrieval Model
 The core matching engine utilizes a custom-trained `Phase2ResNet50` architecture, fine-tuned specifically to bridge the visual domain gap between abstract human line drawings and photorealistic product images.

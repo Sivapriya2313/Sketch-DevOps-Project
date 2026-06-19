@@ -35,9 +35,9 @@ The core matching engine utilizes a custom-trained `Phase2ResNet50` architecture
 
 ### ⚙️ How to Run Locally
 
-**Prerequisites:** You must have Docker and Docker Desktop installed, along with an NVIDIA GPU and the NVIDIA Container Toolkit. QUML Chair_V2. 
+**Prerequisites:** You must have Docker and Docker Desktop installed, along with an NVIDIA GPU and the NVIDIA Container Toolkit. QUML Chair_V2 dataset. 
 
 **1. Clone the repository**
 ```bash
-git clone [https://github.com/YOUR_USERNAME/Sketch-Retrieval-Engine.git](https://github.com/YOUR_USERNAME/Sketch-Retrieval-Engine.git)
-cd Sketch-Retrieval-Engine
+git clone [https://github.com/Sivapriya2313/Sketch-DevOps-Project.git](https://github.com/Sivapriya2313/Sketch-DevOps-Project.git)
+cd Sketch-DevOps-Project

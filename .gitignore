@@ -1,0 +1,16 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore Dataset Images
+trainB/
+dataset/
+
+# Ignore AI Model Weights (Too big for GitHub!)
+phase2_weights_chair/
+*.pth
+*.pt
+
+# Ignore Virtual Environments (if you ever make one)
+venv/
+env/

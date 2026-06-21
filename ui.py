@@ -5,7 +5,7 @@ import os
 
 st.set_page_config(page_title="Sketch Retrieval Engine", layout="wide")
 
-st.title("🎨 Advanced Sketch Retrieval Engine")
+st.title("Advanced Sketch Retrieval Engine")
 st.write("Powered by your local NVIDIA RTX A5000 GPU container.")
 
 # Sidebar configurations
@@ -30,7 +30,7 @@ if uploaded_file is not None:
                 if response.status_code == 200:
                     data = response.json()
                     
-                    # 👇 Check if the backend rejected the image (Outlier detection)
+                    # Check if the backend rejected the image (Outlier detection)
                     if data.get("status") == "error":
                         st.error(data.get("message"))
                     else:
@@ -54,6 +54,6 @@ if uploaded_file is not None:
                 else:
                     st.error(f"Backend returned an error code: {response.status_code}")
             
-            # 👇 THIS IS THE PART THAT WAS MISSING!
+            
             except Exception as e:
                 st.error(f"Could not connect to backend server: {e}")

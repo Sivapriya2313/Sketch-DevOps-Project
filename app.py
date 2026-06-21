@@ -15,10 +15,10 @@ app = FastAPI(title="Sketch Retrieval API")
 print("Setting up the High-Performance Sketch Engine...")
 
 # =====================================================================
-# 🧠 HARDWARE & MODEL SETUP
+# HARDWARE & MODEL SETUP
 # =====================================================================
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"🚀 Running on hardware acceleration device: {device}")
+print(f" Running on hardware acceleration device: {device}")
 
 model = Phase2ResNet50() 
 weights_path = "phase2_weights_chair/ckpt_epoch_80.pth" 
@@ -28,12 +28,12 @@ if os.path.exists(weights_path):
     model.load_state_dict(checkpoint["model_state"])
     model.to(device)
     model.eval() 
-    print("🧠 Thesis PyTorch model weights loaded successfully!")
+    print("Thesis PyTorch model weights loaded successfully!")
 else:
     print(f"⚠️ CRITICAL ERROR: Weights file missing!")
 
 # =====================================================================
-# 🗄️ RUNTIME DATABASE INDEXING
+# RUNTIME DATABASE INDEXING
 # =====================================================================
 preprocess = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -80,7 +80,7 @@ async def build_database():
     print(f"✅ Successfully indexed {len(database_embeddings)} real images into active memory!")
 
 #=====================================================================
-# 🎯 THE PREDICTION ENDPOINT
+# THE PREDICTION ENDPOINT
 # =====================================================================
 @app.post("/predict")
 async def predict_sketch(file: UploadFile = File(...)):
@@ -104,7 +104,7 @@ async def predict_sketch(file: UploadFile = File(...)):
     # 4. Sort the list by highest similarity score
     results.sort(key=lambda x: x[1], reverse=True)
     
-    # 👇 THIS IS EXACTLY WHERE YOUR NEW CODE GOES 👇
+    # THIS IS EXACTLY WHERE YOUR NEW CODE GOES 
     # =====================================================================
     # 1. Get the math score of the closest match
     best_match_score = results[0][1] 

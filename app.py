@@ -7,7 +7,7 @@ import os
 import glob
 import torchvision.transforms as transforms
 
-# Import your actual Phase 2 model class 
+# Import Phase 2 model class 
 from model_phase2 import Phase2ResNet50 
 
 app = FastAPI(title="Sketch Retrieval API")
@@ -30,7 +30,7 @@ if os.path.exists(weights_path):
     model.eval() 
     print("Thesis PyTorch model weights loaded successfully!")
 else:
-    print(f"⚠️ CRITICAL ERROR: Weights file missing!")
+    print(f" CRITICAL ERROR: Weights file missing!")
 
 # =====================================================================
 # RUNTIME DATABASE INDEXING
@@ -57,10 +57,10 @@ async def build_database():
     image_paths = glob.glob(os.path.join(dataset_dir, "*.png")) + glob.glob(os.path.join(dataset_dir, "*.jpg"))
     
     if len(image_paths) == 0:
-        print("⚠️ Warning: No images found in the dataset folder!")
+        print(" Warning: No images found in the dataset folder!")
         return
 
-    print(f"⚙️ Extracting features for {len(image_paths)} images. This might take a minute...")
+    print(f" Extracting features for {len(image_paths)} images. This might take a minute...")
     
     with torch.no_grad():
         for img_path in image_paths:
@@ -104,7 +104,7 @@ async def predict_sketch(file: UploadFile = File(...)):
     # 4. Sort the list by highest similarity score
     results.sort(key=lambda x: x[1], reverse=True)
     
-    # THIS IS EXACTLY WHERE YOUR NEW CODE GOES 
+    
     # =====================================================================
     # 1. Get the math score of the closest match
     best_match_score = results[0][1] 
@@ -119,7 +119,7 @@ async def predict_sketch(file: UploadFile = File(...)):
     if best_match_score < MINIMUM_CHAIR_SCORE:
         return {
             "status": "error",
-            "message": "⚠️ Error: Object not recognized. Please upload a valid chair sketch."
+            "message": " Error: Object not recognized. Please upload a valid chair sketch."
         }
         
     # 4. If it passes the test, it's a valid chair! Return the results.
